@@ -6,6 +6,13 @@ class EventDetailedInfo extends Component {
   state = {
     showMap: false
   };
+//clean up
+  componentWillUnmount() {
+this.setState({
+  showMap:false
+})
+  }
+
   showMapToggle = () => {
     this.setState(prevState => ({
       showMap: !prevState.showMap

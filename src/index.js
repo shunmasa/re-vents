@@ -8,12 +8,11 @@ import App from './app/layout/App';
 import * as serviceWorker from './serviceWorker';
 import { configureStore } from './app/store/configureStore'
 import ScrollToTop from './app/common/util/ScrollToTop'
-import { loadEvents } from './features/event/eventActions'
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import ReduxToastr from 'react-redux-toastr';
 
 const store = configureStore();
-store.dispatch(loadEvents());
+
 
 const rootEl = document.getElementById('root');
 let render = () => {
@@ -39,8 +38,11 @@ if (module.hot) {
     setTimeout(render)
   })
 }
+store.firebaseAuthIsReady.then(()=>{
+render();
 
-render()
+})
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
