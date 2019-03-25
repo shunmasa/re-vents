@@ -11,6 +11,12 @@ export const userDetailedQuery = ({ auth, userUid }) => {
           doc: userUid,
           subcollections: [{ collection: 'photos' }],
           storeAs: 'photos'
+        },
+        {
+          collection: 'users',
+          doc: auth.uid,
+          subcollections: [{ collection: 'following' }],
+          storeAs: 'following'
         }
       ];
     } else {
@@ -18,8 +24,8 @@ export const userDetailedQuery = ({ auth, userUid }) => {
         {
           collection: 'users',
           doc: auth.uid,
-          subcollections: [{ collection: 'photos' }],
-          storeAs: 'photos'
+          subcollections: [{ collection: 'follower' }],
+          storeAs: 'follower'
         }
       ];
     }
